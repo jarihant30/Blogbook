@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}BlogBook{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid bg-dark text-light p-5">
+    <div class="container bg-dark p-5">
+        <h1 class="display-4 text-center">Welcome to BlogBook</h1>
+        <hr>
+		<h5 class="text-xxl-end"> Are you ready to take your career to a new level? </h5>
+    </div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-4">
+		<div class="card text-dark bg-light mb-3 shadow p-3 mb-5 bg-body rounded">
+			<div class="card-body">
+				<h5 class="card-title">{{post.title}}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">{{post.created_at}}</h6>
+				<p class="card-text">{{post.body|striptags|truncatewords:20}}</p>
+				<a href="/post/{{post.slug}}" class="card-link">Read More</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock body %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="card text-dark bg-light mb-3 shadow p-3 mb-5 bg-body rounded">
+				<div class="card-body">
+					<h5 class="card-title">Search Results:</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		{% if posts|length == 0 %}
+		<p>Your search - <b>{{search|truncatewords:10}} </b> - did not match any documents.</p>
+		<h5>Suggestions:</h5>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">Make sure that all words are spelled correctly.</li>
+			<li class="list-group-item">Try different keywords.</li>
+			<li class="list-group-item">Try more general keywords.</li>
+			<li class="list-group-item">Try fewer keywords.</li>
+			<l1>
+				</li>
+		</ul>
+		{% else %}
+		<h5>{{search}}</h5>
+		{% endif %}
+		{% for post in posts reversed %}
+		<div class="col-sm-4">
+			<div class="card text-dark bg-light mb-3 shadow p-3 mb-5 bg-body rounded">
+				<div class="card-body">
+					<h5 class="card-title">{{post.title}}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{post.created_at}}</h6>
+					<p class="card-text">{{post.body|striptags|truncatewords:20}}</p>
+					<a href="/post/{{post.slug}}" class="card-link">Read More</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock body %}
